@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 
 import { TextField, Button, Dialog, DialogTitle, DialogActions, DialogContent, Grid } from '@mui/material'
 import axios from 'axios'
+import { Add } from '@mui/icons-material'
 
-import { Add } from '@material-ui/icons'
 
-export default class AjouterVille extends Component {
+export default class AddCity extends Component {
   constructor() {
     super()
     this.state = {
-      ville: '',
+      city: '',
     }
   }
   handleChange = (e) => {
@@ -24,14 +24,14 @@ export default class AjouterVille extends Component {
     this.setState({ open: false })
     e.preventDefault();
     const data = {
-      label: this.state.ville
+      label: this.state.city
     }
     axios.post('city/add', data)
       .then(res => {
         console.log(res)
         window.location.reload(false)
 
-        localStorage.removeItem('villes')
+        localStorage.removeItem('citys')
       })
   }
   render() {
@@ -45,11 +45,11 @@ export default class AjouterVille extends Component {
 
     return (
       <div>
-        <Button variant="text" color="primary" onClick={handleClickOpen}> ajouter Ville
+        <Button variant="text" color="primary" onClick={handleClickOpen}> add city
           <Add />
         </Button>
         <Dialog open={this.state.open} onClose={handleClose} aria-labelledby="form-dialog-title">
-          <DialogTitle id="form-dialog-title">Ajouter Ville</DialogTitle>
+          <DialogTitle id="form-dialog-title">Add City</DialogTitle>
           <DialogContent>
             <form onSubmit={this.handleSubmit} style={{ padding: '20px' }}>
 
@@ -57,10 +57,11 @@ export default class AjouterVille extends Component {
 
                 <Grid item xs={12} sm={6}>
                   <TextField
-                    name='ville'
-                    style={{ width: '200px' }}
-                    label='Ajouter Ville'
-                    value={this.state.ville}
+                    name='city'
+                    // style={{ width: '200px' }}
+                    fullWidth
+                    label='Add City'
+                    value={this.state.city}
                     onChange={this.handleChange}
                   />
                 </Grid>
@@ -71,7 +72,7 @@ export default class AjouterVille extends Component {
           </DialogContent>
 
           <DialogActions>
-            <Button onClick={this.handleSubmit}>Ajouter</Button>
+            <Button onClick={this.handleSubmit}>Add</Button>
 
             <Button onClick={handleClose} color="primary">
               Annuler

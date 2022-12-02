@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 
 import { TextField, Button,Dialog, DialogTitle, DialogActions, DialogContent, Grid, Typography } from '@mui/material'
 import axios from 'axios'
+import { DeleteForever } from '@mui/icons-material'
 
-import {DeleteForever} from '@material-ui/icons'
 
 export default class SupprimeVille extends Component {
     constructor(props) {

@@ -53,7 +53,7 @@ class Demandes extends React.Component {
         //     }
         // }
         axios
-            .get("administrateurs/medecinsNonAccepter")
+            .get("http://localhost:8088/")
             .then(data => {
                 if (data.data.length !== 0) {
                     this.setState({ medecin: data.data })

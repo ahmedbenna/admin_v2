@@ -1,24 +1,16 @@
 import React, { Component } from 'react'
 
 import { Grid, Typography, Divider, Button, Dialog, DialogActions, DialogContent } from '@mui/material'
-import { Clear } from '@material-ui/icons';
 
-import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios'
+import { Clear } from '@mui/icons-material'
 
 
 
-const styles = {
-
-    link: {
-        textDecoration: 'none',
-        color: 'rgb(0 35 75)'
-    },
-
-};
 
 
-class SupprimerComptePatient extends Component {
+
+class DeleteClient extends Component {
     constructor(props) {
 
         super(props)
@@ -28,7 +20,7 @@ class SupprimerComptePatient extends Component {
     }
    
     handleDelete = e => {
-        const url = 'administrateurs/comptePatients/'+this.props.comptePat.id
+        const url = 'http://localhost:8088/client/deleteClient/'+this.props.comptePat.id
         axios.delete(url)
             .then(res => { 
                 window.location.reload(false)
@@ -85,4 +77,4 @@ class SupprimerComptePatient extends Component {
         )
     }
 }
-export default withStyles(styles)(SupprimerComptePatient)
+export default (DeleteClient)

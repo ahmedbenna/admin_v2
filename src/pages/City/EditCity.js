@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 
 import { TextField, Button,Dialog, DialogTitle, DialogActions, DialogContent, Grid } from '@mui/material'
 import axios from 'axios'
+import { Edit } from '@mui/icons-material'
 
-import {Edit} from '@material-ui/icons'
 
 export default class ModifierVille extends Component {
     constructor(props) {

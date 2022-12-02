@@ -1,58 +1,13 @@
 import React, { Component } from 'react'
 
-import { Dialog, DialogTitle, DialogActions, DialogContent, Radio, Grid, TextField, Button, RadioGroup, FormControlLabel, FormControl, FormLabel, Container, Typography } from '@material-ui/core/';
+import { Dialog, DialogTitle, DialogActions, DialogContent, Radio, Grid, TextField, Button, RadioGroup, FormControlLabel, FormControl, FormLabel } from '@mui/material';
 import axios from 'axios'
 
-import { makeStyles } from '@material-ui/core/styles';
 import * as Yup from 'yup'
 
-
-import { Edit } from '@material-ui/icons'
-import { Link } from 'react-router-dom';
 import { Formik } from 'formik';
 import moment from 'moment';
-
-
-const useStyles = makeStyles((theme) => ({
-    paper: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-
-    },
-    submit: {
-        marginTop: '20px',
-        marginBottom: '20px',
-        color: '#FFFFFF',
-        backgroundColor: '#002868',
-    },
-    link: {
-        textDecoration: 'none',
-        fontWeight: '600',
-        color: '#2196f3',
-    },
-
-    demande: {
-        color: '#224358',
-    },
-    demande1: {
-        fontWeight: '600',
-        color: '#2196f3',
-    }
-
-
-}));
-const patient = JSON.parse(localStorage.getItem('patientInfo'))
-console.log(JSON.parse(localStorage.getItem('patientInfo')))
-
-
-
-
-
-// console.log("eeeeeeeeee", INTIAL_FORM_STATE())
-
-
-
+import { Edit } from '@mui/icons-material';
 
 
 const minDate = moment(new Date()).subtract(18, 'years')._d
@@ -86,10 +41,36 @@ const validationSchema = Yup.object({
 })
 
 
+// handleSubmit = e => {
+//     this.setState({ open: false })
+//     const data = {
+//         nom: this.state.nom,
+//         prenom: this.state.prenom,
+//         dateDeNaissance: this.state.dateDeNaissance,
+//         adresse: this.state.adresse,
+//         telephone: this.state.telephone,
+//         genre: this.state.genre
+//     };
+//     console.log(data)
 
-function ModifierPatient(props) {
-    const classes = useStyles();
-    const [genre, setGenre] = React.useState(props.pat.genre);
+//     const url = 'administrateurs/patients/' + this.state.id
+//     axios.put(url, data)
+//         .then(res => {
+//             window.location.reload(false)
+//             console.log(res)
+//         })
+//         .catch(err => console.log(err));
+
+
+//     const url1 = 'administrateurs/comptePatients/' + this.props.comptePat.id
+//     axios.put(url1, { "email": this.state.email })
+//         .then(res => {
+//             window.location.reload(false)
+//             console.log(res)
+//         })
+//         .catch(err => console.log(err))
+function EditClient(props) {
+    const [genre, setGenre] = React.useState(props.comptePat.patientPrincipal.genre);
     const [open, setOpen] = React.useState(false);
 
     const handleChange = (event) => {
@@ -97,7 +78,7 @@ function ModifierPatient(props) {
     };
 
     const handleClickOpen = () => {
-        setOpen(true);
+        setOpen(true );
     };
 
     const handleClose = () => {
@@ -110,38 +91,51 @@ function ModifierPatient(props) {
                 <Edit />
             </Button>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Modifier compte patient</DialogTitle>
+                <DialogTitle id="form-dialog-title">modifier Medecin</DialogTitle>
                 <DialogContent>
                     <Formik
                         initialValues={{
-                            nom: props.pat.nom,
-                            prenom: props.pat.prenom,
-                            dateDeNaissance: props.pat.dateDeNaissance,
-                            telephone: props.pat.telephone,
-                            adresse: props.pat.adresse,
-                        }}
+                            email: props.comptePat.email,
+                            nom: props.comptePat.patientPrincipal.nom,
+                            prenom: props.comptePat.patientPrincipal.prenom,
+                            dateDeNaissance: props.comptePat.patientPrincipal.dateDeNaissance,
+                            telephone: props.comptePat.patientPrincipal.telephone,
+                            adresse: props.comptePat.patientPrincipal.adresse,
+                        }}  
                         validationSchema={validationSchema}
                         onSubmit={(values, actions) => {
                             setTimeout(() => {
                                 // alert(JSON.stringify(values, null, 2));
                                 const data = {
-
                                     nom: values.nom,
+                                    email: props.pat.email,
                                     prenom: values.prenom,
-                                    genre: genre,
-                                    adresse: values.adresse,
                                     dateDeNaissance: values.dateDeNaissance,
-                                    telephone: values.telephone
-
+                                    adresse: values.adresse,
+                                    telephone: values.telephone,
+                                    genre: values.genre
                                 };
                                 console.log(data)
-                                const url = 'administrateurs/patients/' + props.pat.id
+
+                                const url = 'http://localhost:8088/client/' +props.comptePat.id
                                 axios.put(url, data)
                                     .then(res => {
-                                        console.log(res)
                                         window.location.reload(false)
+                                        console.log(res)
+                                    })
+                                    .catch(err => console.log(err));
+
+
+                                const url1 = 'administrateurs/comptePatients/' +props.comptePat.id
+                                axios.put(url1, { "email": values.email })
+                                    .then(res => {
+                                        window.location.reload(false)
+                                        console.log(res)
                                     })
                                     .catch(err => console.log(err))
+
+
+
                             }, 1000);
                         }}
                     >
@@ -177,6 +171,21 @@ function ModifierPatient(props) {
                                             onBlur={props.handleBlur}
                                             error={props.touched.prenom && Boolean(props.errors.prenom)}
                                             helperText={props.touched.prenom && props.errors.prenom}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <TextField
+                                            fullWidth
+                                            size='small'
+                                            variant='outlined'
+                                            name='email'
+                                            label="Email"
+                                            type="email"
+                                            value={props.values.email}
+                                            onChange={props.handleChange}
+                                            onBlur={props.handleBlur}
+                                            error={props.touched.email && Boolean(props.errors.email)}
+                                            helperText={props.touched.email && props.errors.email}
                                         />
                                     </Grid>
 
@@ -235,7 +244,7 @@ function ModifierPatient(props) {
                                         </FormControl>
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <Button className={classes.submit} fullWidth type="submit"  >Modifier</Button>
+                                        <Button fullWidth type="submit"  >Modifier</Button>
                                     </Grid>
 
                                 </Grid>
@@ -244,6 +253,8 @@ function ModifierPatient(props) {
                         {/* </Form> */}
                     </Formik>
                 </DialogContent>
+
+
             </Dialog>
 
         </div >
@@ -251,4 +262,4 @@ function ModifierPatient(props) {
 }
 
 
-export default (ModifierPatient)
+export default (EditClient)

@@ -3,13 +3,12 @@ import React, { Component } from 'react'
 import { TextField, TextareaAutosize, FormControl, Select, InputLabel, MenuItem, Button, Dialog, DialogTitle, DialogActions, DialogContent, Grid, CircularProgress } from '@mui/material'
 import axios from 'axios'
 
-import { withStyles } from '@material-ui/core/styles';
 
 import * as Yup from 'yup'
 
-import { Edit } from '@material-ui/icons'
 import { Formik } from 'formik';
 import moment from 'moment';
+import { Edit } from '@mui/icons-material';
 
 
 const styles = {
@@ -103,7 +102,7 @@ class EditProvider extends Component {
     }
     getVille = () => {
         axios
-            .get("city/getAllCity")
+            .get("http://localhost:8088/city/getAllCity")
             .then(data => {
                 this.setState({ citys: data.data })
                 console.log(data)
@@ -116,7 +115,7 @@ class EditProvider extends Component {
 
     getSpecialite = () => {
         axios
-            .get("speciality/getAllSpeciality")
+            .get("http://localhost:8088/speciality/getAllSpeciality")
             .then(data => {
                 this.setState({ specialitys: data.data })
                 console.log(data)
@@ -153,7 +152,7 @@ class EditProvider extends Component {
         };
         console.log(data)
 
-        const url = "administrateurs/medecins/" + this.state.id
+        const url = "http://localhost:8088/administrateurs/medecins/" + this.state.id
         axios.put(url, data)
             .then(res => {
                 console.log(res)
@@ -379,7 +378,12 @@ class EditProvider extends Component {
                                                     type="submit"
                                                     variant="contained"
                                                     // onClick={props.handleSubmit}
-                                                    className={classes.submit}
+                                                    sx={{
+                                                        marginTop: '20px',
+                                                        marginBottom: '20px',
+                                                        color: '#FFFFFF',
+                                                        backgroundColor: '#002868',
+                                                    }}
                                                 >
                                                     Modifier
                                                 </Button>
@@ -412,4 +416,4 @@ class EditProvider extends Component {
     }
 }
 
-export default (withStyles(styles)(EditProvider))
+export default(EditProvider)

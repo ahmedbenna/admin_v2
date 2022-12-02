@@ -1,9 +1,8 @@
 
 import React from "react";
 import axios from "axios";
-import { Typography, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, CircularProgress } from "@material-ui/core";
+import { Typography, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, CircularProgress } from "@mui/material";
 
-import { withStyles } from '@material-ui/core/styles';
 import AddCity from "./AddCity";
 import DeleteCity from "./DeleteCity";
 import EditCity from "./EditCity";
@@ -11,9 +10,7 @@ import { withRouter } from "react-router";
 
 
 
-const styles = {
 
-}
 class Ville extends React.Component {
     constructor(props) {
         super(props)
@@ -30,7 +27,7 @@ class Ville extends React.Component {
     getVille = () => {
 
         axios
-            .get("city/getAllCity")
+            .get("http://localhost:8088/provider/city/getAllCity")
             .then(data => {
                 if (data.data.length !== 0) {
                     this.setState({ ville: data.data })
@@ -106,4 +103,4 @@ class Ville extends React.Component {
         );
     }
 }
-export default withRouter(withStyles(styles)(Ville))
+export default (Ville)

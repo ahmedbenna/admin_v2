@@ -5,7 +5,7 @@ import axios from 'axios'
 
 import { Check } from '@material-ui/icons'
 
-export default class AccepterMedecin extends Component {
+export default class Accepterprovider extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -24,7 +24,7 @@ export default class AccepterMedecin extends Component {
         this.setState({ open: false })
         e.preventDefault();
 
-        const url = 'http://localhost:8088/api/administrateurs/accepterMedecins/' + this.state.id
+        const url = 'http://localhost:8088/provider/signup' + this.state.id
         axios.put(url)
 
             .then(res => {

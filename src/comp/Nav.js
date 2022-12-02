@@ -139,7 +139,7 @@ export default function Nav() {
                 <ListItemText primary="Dashboard" />
               </ListItem>
             </Link>
-            <Link to='/pages/provider/provider' style={{textDecoration: 'none'}}>
+            <Link to='/provider' style={{textDecoration: 'none'}}>
               <ListItem button>
                 <ListItemIcon>
                   <LocalHospital />
@@ -147,7 +147,7 @@ export default function Nav() {
                 <ListItemText primary="provider" />
               </ListItem>
             </Link>
-            <Link to='/pages/Client/Client' style={{textDecoration: 'none'}}>
+            <Link to='/Client' style={{textDecoration: 'none'}}>
               <ListItem button>
                 <ListItemIcon>
                   <People />
@@ -155,7 +155,7 @@ export default function Nav() {
                 <ListItemText primary="Client" />
               </ListItem>
             </Link>
-            <Link to='/pages/Specialite/Specialites' style={{textDecoration: 'none'}}>
+            <Link to='/Specialites' style={{textDecoration: 'none'}}>
               <ListItem button>
                 <ListItemIcon>
                   <Class />
@@ -163,7 +163,7 @@ export default function Nav() {
                 <ListItemText primary="Specialites" />
               </ListItem>
             </Link>
-            <Link to='/pages/City/City' style={{textDecoration: 'none'}}>
+            <Link to='/City' style={{textDecoration: 'none'}}>
               <ListItem button>
                 <ListItemIcon>
                   <LocationCity />

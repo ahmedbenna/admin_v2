@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 
 import { TextField, Button,Dialog, DialogTitle, DialogActions, DialogContent, Grid, Typography } from '@mui/material'
 import axios from 'axios'
+import { DeleteForever } from '@mui/icons-material'
 
-import {DeleteForever} from '@material-ui/icons'
 
 export default class DeleteProvider extends Component {
     constructor(props) {
@@ -24,7 +24,7 @@ export default class DeleteProvider extends Component {
         this.setState({ open: false })
         e.preventDefault();
        
-        const url='administrateurs/medecins/'+this.state.id
+        const url='http://localhost:8088/administrateurs/medecins/'+this.state.id
         axios.delete(url)
             .then(res => {
                 console.log(res)

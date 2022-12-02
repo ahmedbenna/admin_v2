@@ -24,7 +24,7 @@ export default class RejeterMedecin extends Component {
         this.setState({ open: false })
         e.preventDefault();
        
-        const url='administrateurs/rejeterMedecins/'+this.state.id
+        const url='http://localhost:8088/administrateurs/rejeterMedecins/'+this.state.id
         axios.put(url)
             .then(res => {
                 console.log(res)

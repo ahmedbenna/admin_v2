@@ -1,60 +1,25 @@
 
 import React from "react";
 
-import { withStyles } from '@material-ui/core/styles';
-
-
-import { Typography, IconButton, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, CircularProgress } from "@material-ui/core";
+import { Typography, IconButton, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, CircularProgress } from "@mui/material";
 
 import axios from "axios";
-
-import { ExpandMore } from '@material-ui/icons/ExpandMore';
-
-import SupprimerComptePatient from "./SupprimerComptePatient";
-import ModifierComptePatient from "./ModifierComptePatient";
-import AjouterComptePatient from "./AjouterComptePatient";
-import SupprimerPatient from "./SupprimerPatient";
-import ModifierPatient from "./ModifierPatient";
+import SupprimerComptePatient from "./DeleteClient";
+import ModifierComptePatient from "./EditClient";
+import AjouterComptePatient from "./AddClient";
+// import SupprimerPatient from "./SupprimerPatient";
+// import ModifierPatient from "./ModifierPatient";
 
 import moment from 'moment'
-import AjouterPatient from "./AjouterPatient";
-import Membres from "./Membres";
-import { withRouter } from "react-router";
+// import AjouterPatient from "./AjouterPatient";
+// import Membres from "./Membres";
 
 
-
-const styles = {
-    paper: {
-        marginTop: '20px',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-
-    },
-    avatar: {
-        margin: '10px',
-
-    },
-    form: {
-        width: '100%',
-        marginTop: '10px',
-    },
-    submit: {
-
-        margin: '20px',
-        color: '#FFFFFF',
-        // backgroundColor: '#2196F3',
-    },
-    link: {
-        textDecoration: 'none',
-        color: '#616161',
-    }
-}
-class Patients extends React.Component {
+class Client extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            cPatient: '',
+            cClient: '',
             patient: '',
             api: false
         };
@@ -64,10 +29,10 @@ class Patients extends React.Component {
     }
     getcomptePatient = () => {
         axios
-            .get("client/signup")
+            .get("http://localhost:8088/client/getAllClient")
             .then(data => {
                 if (data.data.length !== 0) {
-                    this.setState({ cPatient: data.data })
+                    this.setState({ cClient: data.data })
                     console.log(data)
                 } else {
                     this.setState({ api: true })
@@ -96,7 +61,7 @@ class Patients extends React.Component {
                         <Typography variant='h6'>Vide</Typography>
                     </div>
                     ) :
-                    (this.state.cPatient) ? (
+                    (this.state.cClient) ? (
                         <TableContainer >
                             <Table size='small' className={classes.table} aria-label="simple table">
                                 <TableHead>
@@ -111,11 +76,11 @@ class Patients extends React.Component {
                                         <TableCell align="center">Genre</TableCell>
                                         <TableCell align="center">Supprimer</TableCell>
                                         <TableCell align="center">Modifier</TableCell>
-                                        <TableCell align='center' >Ajouter membre</TableCell>
+                                        {/* <TableCell align='center' >Ajouter membre</TableCell> */}
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {this.state.cPatient.map(cpat =>
+                                    {this.state.cClient.map(cpat =>
                                         <TableRow key={cpat.id}>
                                             <TableCell component="th" scope="row">{cpat.id}</TableCell>
                                             <TableCell align="center"> {cpat.email} </TableCell>
@@ -127,8 +92,8 @@ class Patients extends React.Component {
                                             <TableCell align="center"> {cpat.patientPrincipal.genre} </TableCell>
                                             <TableCell align="center">  <SupprimerComptePatient comptePat={cpat} /> </TableCell>
                                             <TableCell align="center">  <ModifierComptePatient comptePat={cpat} pat={cpat} /> </TableCell>
-                                            <TableCell align="center">  <AjouterPatient id={cpat.id} pat={cpat} /> </TableCell>
-                                            <TableCell align="center">  <Membres id={cpat.id} /> </TableCell>
+                                            {/* <TableCell align="center">  <AjouterPatient id={cpat.id} pat={cpat} /> </TableCell> */}
+                                            {/* <TableCell align="center">  <Membres id={cpat.id} /> </TableCell> */}
 
 
                                         </TableRow>
@@ -151,4 +116,4 @@ class Patients extends React.Component {
         );
     }
 }
-export default withRouter(withStyles(styles)(Patients))
+export default (Client)

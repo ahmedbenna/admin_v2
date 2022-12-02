@@ -1,86 +1,18 @@
 import React, { Component } from 'react'
 
-import { Dialog, DialogActions, DialogContent, DialogTitle, Radio, Typography, Grid, TextField, CssBaseline, Button, RadioGroup, FormControlLabel, FormControl, FormLabel, Container } from '@material-ui/core/';
+import { Dialog, DialogActions, DialogContent, DialogTitle, Radio, Typography, Grid, TextField, CssBaseline, Button, RadioGroup, FormControlLabel, FormControl, FormLabel, Container } from '@mui/material';
 import axios from 'axios'
-import { makeStyles } from '@material-ui/core/styles';
 
 import * as Yup from 'yup'
 
-import { Add } from '@material-ui/icons'
 import moment from 'moment';
 import { Formik } from 'formik';
-
-
-
-const useStyles = makeStyles((theme) => ({
-
-    paper: {
-        // paddingTop: '20px',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-
-    },
-    submit: {
-        marginTop: '20px',
-        marginBottom: '20px',
-        color: '#FFFFFF',
-        backgroundColor: '#002868',
-    },
-
-
-    demande: {
-        color: '#224358',
-    },
-    demande1: {
-        fontWeight: '600',
-        color: '#2196f3',
-    },
-
-    link: {
-        textDecoration: 'none',
-        color: '#616161',
-    },
-    formControl: {
-        justifyContent: 'center',
-        width: 'calc(400px - 5px)',
-    },
-
-    presentation: {
-        width: '400px',
-        borderRadius: '5px',
-        backgroundColor: '#F0F0F0',
-        borderColor: '#bdbdbd',
-
-    },
-
-
-
-}));
-const styles = {
+import { Add } from '@mui/icons-material';
 
 
 
 
-    link: {
-        textDecoration: 'none',
-        color: '#616161',
-    },
-    formControl: {
-        justifyContent: 'center',
-        width: 'calc(400px - 5px)',
-    },
 
-    presentation: {
-        width: '400px',
-        borderRadius: '5px',
-        backgroundColor: '#F0F0F0',
-        borderColor: '#bdbdbd',
-
-    },
-
-
-}
 
 const INTIAL_FORM_STATE = {
     email: "",
@@ -127,8 +59,7 @@ const validationSchema = Yup.object({
 
 
 })
-export default function AjouterComptePatient() {
-    const classes = useStyles();
+export default function AddClient() {
     const [genre, setGenre] = React.useState('femme');
     const [open, setOpen] = React.useState(false);
 
@@ -148,17 +79,21 @@ export default function AjouterComptePatient() {
     return (
         <div>
             <Button variant="text" color="primary" onClick={handleClickOpen}> ajouter compte patient
-                   <Add />
+                <Add />
             </Button>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Ajouter Compte Patient</DialogTitle>
                 <DialogContent>
-                    <Container component="main" maxWidth="xs" style={{  backgroundColor: '#FFFFFF', borderRadius: "15px" }}>
+                    <Container component="main" maxWidth="xs" style={{ backgroundColor: '#FFFFFF', borderRadius: "15px" }}>
                         <CssBaseline />
-                        <div className={classes.paper}>
+                        <div sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                        }}>
                             <Typography component="h1" variant="body1" style={{ color: '#224358', padding: '20px', fontWeight: "600" }}>
-                                
-                    </Typography>
+
+                            </Typography>
                             <Formik
                                 initialValues={{
                                     ...INTIAL_FORM_STATE
@@ -181,7 +116,7 @@ export default function AjouterComptePatient() {
                                             }
                                         };
                                         console.log(data)
-                                        axios.post('comptePatients', data)
+                                        axios.post('http://localhost:8088/client/signup', data)
                                             .then(res => {
                                                 console.log('sig', res)
                                                 // getPat(values.email)
@@ -325,7 +260,12 @@ export default function AjouterComptePatient() {
                                                 </FormControl>
                                             </Grid>
                                             <Grid item xs={12}>
-                                                <Button className={classes.submit} fullWidth type="submit"  >Ajouter</Button>
+                                                <Button sx={{
+                                                    marginTop: '20px',
+                                                    marginBottom: '20px',
+                                                    color: '#FFFFFF',
+                                                    backgroundColor: '#002868',
+                                                }} fullWidth type="submit"  >Ajouter</Button>
                                             </Grid>
                                         </Grid>
                                     </form>
@@ -340,7 +280,7 @@ export default function AjouterComptePatient() {
 
                     <Button onClick={handleClose} color="primary">
                         Annuler
-                        </Button>
+                    </Button>
                 </DialogActions>
             </Dialog>
 
