@@ -1,21 +1,44 @@
 import { CircularProgress, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import AddSpeciality from './AddSpeciality'
 import EditSpeciality from './EditSpeciality'
 
 export default function Speciality() {
+    
+  const [Specialitys, setSpeciality]=useState();
+  const [api, setApi]=useState();
+
+
+  useEffect(() => {
+
+    async function getCity() {
+      try {
+        const response = await axios.get('http://localhost:8088/speciality/getAllSpeciality');
+        console.log(response);
+        setSpeciality(response.data);
+        console.log("ccccc", Specialitys);
+        // setLoading(false);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    getCity();
+    console.log("city", Specialitys)
+    // console.log("sdf", moment(minDate).subtract(2, 'days').format("YYYY-MM-DD"))
+  }, []);
   return (
     <div style={{ width: "100%" }}>
                 <div align='right' >
                     <AddSpeciality />
 
                 </div>
-                {(this.state.api == true) ? (
+                {(api == true) ? (
                     <div align='center'>
                         <Typography variant='h6'>Vide</Typography>
                     </div>
                 ) :
-                    (this.state.specialites) ? (
+                    (Specialitys) ? (
 
                         <TableContainer >
                             <Table  aria-label="simple table">
@@ -28,7 +51,7 @@ export default function Speciality() {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {this.state.specialites.map(spec =>
+                                    {Specialitys.map(spec =>
                                         <TableRow key={spec.idSpeciality}>
                                             <TableCell component="th" scope="row">{spec.idSpeciality}</TableCell>
                                             <TableCell align="right">{spec.label}</TableCell>

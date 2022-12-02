@@ -55,7 +55,7 @@ function App() {
                   <Route exact path="/provider" element={<Provider />} />
                   <Route exact path="/client" element={<Client />} />
                   <Route exact path="/city" element={<City />} />
-                  <Route exact path="/speciality" element={<Speciality />} />
+                  <Route exact path="/Speciality" element={<Speciality />} />
                 </Routes>
               </Paper>
             </div>

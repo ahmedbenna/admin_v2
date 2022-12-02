@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { TextField, Button,Dialog, DialogTitle, DialogActions, DialogContent, Grid } from '@mui/material'
+import { TextField, Button, Dialog, DialogTitle, DialogActions, DialogContent, Grid } from '@mui/material'
 import axios from 'axios'
 import { Edit } from '@mui/icons-material'
 
@@ -10,7 +10,7 @@ export default class EditSpeciality extends Component {
         super(props)
         this.state = {
             specialite: props.libelle,
-            id : props.id,
+            id: props.id,
         }
     }
     handleChange = (e) => {
@@ -25,9 +25,11 @@ export default class EditSpeciality extends Component {
         this.setState({ open: false })
         e.preventDefault();
         const data = {
+
             label: this.state.specialite
+
         }
-        const url='speciality/editSpeciality/'+this.state.id
+        const url = 'http://localhost:8088/speciality/editSpeciality/' + this.state.id
         axios.put(url, data)
             .then(res => {
                 console.log(res)
@@ -48,7 +50,7 @@ export default class EditSpeciality extends Component {
         return (
             <div>
                 <Button variant="text" color="primary" onClick={handleClickOpen}>
-                   <Edit />
+                    <Edit />
                 </Button>
                 <Dialog open={this.state.open} onClose={handleClose} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">modifier specialite</DialogTitle>
@@ -59,14 +61,14 @@ export default class EditSpeciality extends Component {
 
                                 <Grid item xs={12} sm={6}>
                                     <TextField
-                                        style={{ width:'200px'}}
+                                        style={{ width: '200px' }}
                                         name='specialite'
                                         label='Ajouter Specialite'
                                         value={this.state.specialite}
                                         onChange={this.handleChange}
                                     />
                                 </Grid>
-                                
+
                             </Grid>
 
                         </form>
@@ -80,7 +82,7 @@ export default class EditSpeciality extends Component {
                         </Button>
                     </DialogActions>
                 </Dialog>
-                
+
             </div >
         )
     }

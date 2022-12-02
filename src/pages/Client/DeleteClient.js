@@ -20,7 +20,7 @@ class DeleteClient extends Component {
     }
    
     handleDelete = e => {
-        const url = 'http://localhost:8088/client/deleteClient/'+this.props.comptePat.id
+        const url = 'http://localhost:8088/client/deleteClient/'+this.props.c.id
         axios.delete(url)
             .then(res => { 
                 window.location.reload(false)
@@ -43,11 +43,6 @@ class DeleteClient extends Component {
         };
 
         return (
-            <div className={classes.contaier}>
-
-
-
-
 
 
                 <div>
@@ -56,7 +51,7 @@ class DeleteClient extends Component {
                     <Dialog open={this.state.open} onClose={handleClose} aria-labelledby="form-dialog-title">
 
                         <DialogContent>
-                            <Typography> supprimer {this.props.nom} {this.props.prenom} ?</Typography>
+                            <Typography> supprimer {this.props.c.firstName} {this.props.c.lastName} ?</Typography>
                         </DialogContent>
                         <DialogActions>
                             <Button onClick={this.handleDelete} color="primary">
@@ -68,12 +63,6 @@ class DeleteClient extends Component {
                         </DialogActions>
                     </Dialog>
                 </div>
-
-
-
-
-
-            </div>
         )
     }
 }

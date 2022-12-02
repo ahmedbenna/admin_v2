@@ -131,7 +131,7 @@ export default function Nav() {
         </DrawerHeader>
         <Divider />
         <List>
-        <Link to='/' style={{textDecoration: 'none'}}>
+        <Link to='/' style={{ textDecoration: 'none', color: '#585959' }}>
               <ListItem button>
                 <ListItemIcon>
                   <Dashboard />
@@ -139,7 +139,7 @@ export default function Nav() {
                 <ListItemText primary="Dashboard" />
               </ListItem>
             </Link>
-            <Link to='/provider' style={{textDecoration: 'none'}}>
+            <Link to='/provider' style={{ textDecoration: 'none', color: '#585959' }}>
               <ListItem button>
                 <ListItemIcon>
                   <LocalHospital />
@@ -147,7 +147,7 @@ export default function Nav() {
                 <ListItemText primary="provider" />
               </ListItem>
             </Link>
-            <Link to='/Client' style={{textDecoration: 'none'}}>
+            <Link to='/Client' style={{ textDecoration: 'none', color: '#585959' }}>
               <ListItem button>
                 <ListItemIcon>
                   <People />
@@ -155,7 +155,7 @@ export default function Nav() {
                 <ListItemText primary="Client" />
               </ListItem>
             </Link>
-            <Link to='/Specialites' style={{textDecoration: 'none'}}>
+            <Link to='/Speciality' style={{ textDecoration: 'none', color: '#585959' }}>
               <ListItem button>
                 <ListItemIcon>
                   <Class />
@@ -163,7 +163,7 @@ export default function Nav() {
                 <ListItemText primary="Specialites" />
               </ListItem>
             </Link>
-            <Link to='/City' style={{textDecoration: 'none'}}>
+            <Link to='/City' style={{ textDecoration: 'none', color: '#585959' }}>
               <ListItem button>
                 <ListItemIcon>
                   <LocationCity />

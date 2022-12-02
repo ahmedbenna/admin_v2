@@ -11,26 +11,26 @@ import { withRouter } from "react-router";
 
 
 
-class Ville extends React.Component {
+class City extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            ville: '',
+            city: '',
             api: false
         };
     }
 
     componentDidMount() {
-        this.getVille();
+        this.getCity();
 
     }
-    getVille = () => {
+    getCity = () => {
 
         axios
-            .get("http://localhost:8088/provider/city/getAllCity")
+            .get("http://localhost:8088/city/getAllCity")
             .then(data => {
                 if (data.data.length !== 0) {
-                    this.setState({ ville: data.data })
+                    this.setState({ city: data.data })
                     console.log("ente")
                 }
                 else {
@@ -46,7 +46,7 @@ class Ville extends React.Component {
                 }
                 console.log(err);
             });
-        if (this.state.ville) {
+        if (this.state.city) {
             this.setState({ api: true })
         }
     };
@@ -64,9 +64,9 @@ class Ville extends React.Component {
                         <Typography variant='h6'>Vide</Typography>
                     </div>
                 ) :
-                    (this.state.ville) ? (
+                    (this.state.city) ? (
                         <TableContainer >
-                            <Table className={classes.table} aria-label="simple table">
+                            <Table  aria-label="simple table">
                                 <TableHead>
                                     <TableRow>
                                         <TableCell align="right">Id</TableCell>
@@ -77,12 +77,12 @@ class Ville extends React.Component {
                                 </TableHead>
                                 <TableBody>
 
-                                    {this.state.ville.map(vil =>
-                                        <TableRow key={vil.idCity}>
-                                            <TableCell component="th" scope="row">{vil.idCity}</TableCell>
-                                            <TableCell align="right">{vil.label}</TableCell>
-                                            {/* <TableCell align="right">  <DeleteCity id={vil.id} libelle={vil.ville}/> </TableCell> */}
-                                            <TableCell align="right">  <EditCity id={vil.idCity} libelle={vil.label} /> </TableCell>
+                                    {this.state.city.map(cit =>
+                                        <TableRow key={cit.idCity}>
+                                            <TableCell component="th" scope="row">{cit.idCity}</TableCell>
+                                            <TableCell align="right">{cit.label}</TableCell>
+                                            {/* <TableCell align="right">  <DeleteCity id={cit.id} libelle={cit.city}/> </TableCell> */}
+                                            <TableCell align="right">  <EditCity city={cit} /> </TableCell>
                                             {/* <TableCell align="right">{row.protein}</TableCell>  */}
                                         </TableRow>
                                     )}
@@ -103,4 +103,4 @@ class Ville extends React.Component {
         );
     }
 }
-export default (Ville)
+export default (City)

@@ -26,7 +26,7 @@ export default class AddCity extends Component {
     const data = {
       label: this.state.city
     }
-    axios.post('city/add', data)
+    axios.post('http://localhost:8088/city/add', data)
       .then(res => {
         console.log(res)
         window.location.reload(false)

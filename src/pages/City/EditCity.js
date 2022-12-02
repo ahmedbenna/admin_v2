@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
 
-import { TextField, Button,Dialog, DialogTitle, DialogActions, DialogContent, Grid } from '@mui/material'
+import { TextField, Button, Dialog, DialogTitle, DialogActions, DialogContent, Grid } from '@mui/material'
 import axios from 'axios'
 import { Edit } from '@mui/icons-material'
 
 
-export default class ModifierVille extends Component {
+export default class EditCity extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            ville: props.libelle,
-            id : props.id,
-        }
+            city: props.city.label,
+
+
+        };
     }
     handleChange = (e) => {
         this.setState({
@@ -22,16 +23,18 @@ export default class ModifierVille extends Component {
     }
 
     handleSubmit = e => {
-        this.setState({ open: false })
-        e.preventDefault();
+        // this.setState({ open: false })
+        // e.preventDefault();
         const data = {
-            ville: this.state.Ville
+
+            label: this.state.city,
+
         }
-        const url='villes/'+this.state.id
+        const url = 'http://localhost:8088/city/editCity/' + this.props.city.idCity
         axios.put(url, data)
             .then(res => {
                 console.log(res)
-                localStorage.removeItem('villes')
+                window.location.reload(false)
             })
     }
     render() {
@@ -46,10 +49,10 @@ export default class ModifierVille extends Component {
         return (
             <div>
                 <Button variant="text" color="primary" onClick={handleClickOpen}>
-                   <Edit />
+                    <Edit />
                 </Button>
                 <Dialog open={this.state.open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                    <DialogTitle id="form-dialog-title">modifier ville</DialogTitle>
+                    <DialogTitle id="form-dialog-title">Edit City</DialogTitle>
                     <DialogContent>
                         <form onSubmit={this.handleSubmit} style={{ padding: '20px' }}>
 
@@ -57,14 +60,14 @@ export default class ModifierVille extends Component {
 
                                 <Grid item xs={12} sm={6}>
                                     <TextField
-                                        style={{ width:'200px'}}
-                                        name='ville'
-                                        label='Ajouter Ville'
-                                        value={this.state.ville}
+                                        style={{ width: '200px' }}
+                                        name='city'
+                                        label='add city'
+                                        value={this.state.city}
                                         onChange={this.handleChange}
                                     />
                                 </Grid>
-                                
+
                             </Grid>
 
                         </form>
@@ -78,7 +81,7 @@ export default class ModifierVille extends Component {
                         </Button>
                     </DialogActions>
                 </Dialog>
-                
+
             </div >
         )
     }

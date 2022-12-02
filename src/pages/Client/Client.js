@@ -1,99 +1,82 @@
-
-import React from "react";
-
-import { Typography, IconButton, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, CircularProgress } from "@mui/material";
-
-import axios from "axios";
-import SupprimerComptePatient from "./DeleteClient";
-import ModifierComptePatient from "./EditClient";
-import AjouterComptePatient from "./AddClient";
-// import SupprimerPatient from "./SupprimerPatient";
-// import ModifierPatient from "./ModifierPatient";
-
-import moment from 'moment'
-// import AjouterPatient from "./AjouterPatient";
-// import Membres from "./Membres";
+import React, { useEffect, useState } from 'react'
+import { Typography, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, CircularProgress, Grid } from "@mui/material";
+import AddClient from './AddClient';
+import DeleteClient from './DeleteClient';
+import EditClient from './EditClient';
+import axios from 'axios';
+import moment from 'moment';
 
 
-class Client extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            cClient: '',
-            patient: '',
-            api: false
-        };
-    }
-    componentDidMount() {
-        this.getcomptePatient();
-    }
-    getcomptePatient = () => {
-        axios
-            .get("http://localhost:8088/client/getAllClient")
-            .then(data => {
-                if (data.data.length !== 0) {
-                    this.setState({ cClient: data.data })
-                    console.log(data)
-                } else {
-                    this.setState({ api: true })
-                }
-            })
-            .catch(err => {
-                // if(err.response.status == 401){
-                //     localStorage.removeItem("token")
-                //     localStorage.removeItem("admin")
-                //     window.location= '/'
 
-                // }
-                console.log(err);
-            });
-    };
-    render() {
-        const { classes } = this.props;
 
+export default function Cient() {
+    const [clients, setClients]=useState();
+    // const [ClientsR, setClientsR]=useState();
+    const [api, setApi]=useState();
+
+    useEffect(() => {
+
+        async function getClient() {
+          try {
+            const response = await axios.get('http://localhost:8088/client/getAllClient');
+            console.log(response);
+            setClients(response.data);
+            console.log("ccccc", clients);
+            // setLoading(false);
+          } catch (error) {
+            console.error(error);
+          }
+        }
+        getClient();
+        console.log("clients", clients)
+        // console.log("sdf", moment(minDate).subtract(2, 'days').format("YYYY-MM-DD"))
+      }, []);
         return (
             <div style={{ width: "100%" }}>
                 <div align='right' >
-                    <AjouterComptePatient />
+                    <AddClient />
                 </div>
-                {(this.state.api == true) ? (
+                {(api == true) ? (
                     <div align='center'>
                         <Typography variant='h6'>Vide</Typography>
                     </div>
                     ) :
-                    (this.state.cClient) ? (
+                    (clients) ? (
                         <TableContainer >
-                            <Table size='small' className={classes.table} aria-label="simple table">
+                            <Table size='small'  aria-label="simple table">
                                 <TableHead>
                                     <TableRow>
-                                        <TableCell align="center">Id</TableCell>
-                                        <TableCell align="center">Email</TableCell>
-                                        <TableCell align="center">Nom</TableCell>
-                                        <TableCell align="center">Prénom</TableCell>
-                                        <TableCell align="center">Date de naissance</TableCell>
-                                        <TableCell align="center">Adresse</TableCell>
-                                        <TableCell align="center">Téléphone</TableCell>
-                                        <TableCell align="center">Genre</TableCell>
-                                        <TableCell align="center">Supprimer</TableCell>
-                                        <TableCell align="center">Modifier</TableCell>
-                                        {/* <TableCell align='center' >Ajouter membre</TableCell> */}
+                                    <TableCell size='small' align="center">Id</TableCell>
+                                                <TableCell size='small' align="center">firstName</TableCell>
+                                                <TableCell align="center">lastName</TableCell>
+                                                <TableCell align="center">Email</TableCell>
+                                                {/* <TableCell align="center">speciality</TableCell> */}
+                                                <TableCell align="center">phone</TableCell>
+                                                <TableCell align="center">birthday</TableCell>
+                                                <TableCell align="center">city</TableCell>
+                                                <TableCell align="center">street</TableCell>
+                                                {/* <TableCell align="center">Présentation</TableCell> */}
+                                                {/* <TableCell align="center">valider</TableCell> */}
+                                                <TableCell align="center">Supprimer</TableCell>
+                                                <TableCell align="center">Modifier</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {this.state.cClient.map(cpat =>
-                                        <TableRow key={cpat.id}>
-                                            <TableCell component="th" scope="row">{cpat.id}</TableCell>
-                                            <TableCell align="center"> {cpat.email} </TableCell>
-                                            <TableCell align="center"> {cpat.patientPrincipal.nom} </TableCell>
-                                            <TableCell align="center"> {cpat.patientPrincipal.prenom} </TableCell>
-                                            <TableCell align="center"> {moment(cpat.patientPrincipal.dateDeNaissance).calendar()} </TableCell>
-                                            <TableCell align="center"> {cpat.patientPrincipal.adresse} </TableCell>
-                                            <TableCell align="center"> {cpat.patientPrincipal.telephone} </TableCell>
-                                            <TableCell align="center"> {cpat.patientPrincipal.genre} </TableCell>
-                                            <TableCell align="center">  <SupprimerComptePatient comptePat={cpat} /> </TableCell>
-                                            <TableCell align="center">  <ModifierComptePatient comptePat={cpat} pat={cpat} /> </TableCell>
-                                            {/* <TableCell align="center">  <AjouterPatient id={cpat.id} pat={cpat} /> </TableCell> */}
-                                            {/* <TableCell align="center">  <Membres id={cpat.id} /> </TableCell> */}
+                                    {clients.map(c =>
+                                        <TableRow key={c.id}>
+                                          <TableCell component="th" scope="row">{c.id}</TableCell>
+                                                        <TableCell align="center">{c.firstName}</TableCell>
+                                                        <TableCell align="center">{c.lastName}</TableCell>
+                                                        <TableCell align="center">{c.email}</TableCell>
+                                                        {/* <TableCell align="center">{c.speciality.label}</TableCell> */}
+                                                        <TableCell align="center">{c.phone}</TableCell>
+                                                        <TableCell align="center">{c.birthday}</TableCell>
+                                                        <TableCell align="center">{c.city.label}</TableCell>
+                                                        <TableCell align="center">{c.street}</TableCell>
+                                                        {/* <TableCell align="center">{c.presentation}</TableCell> */}
+                                                        {/* <TableCell align="center">{(c.valider) ? <CheckCircle /> : <HighlightOff />}</TableCell> */}
+                                                        <TableCell align="center">  <DeleteClient c={c} /> </TableCell>
+                                                        {/* <TableCell align="center">  <EditClient c={c} /> </TableCell> */}
 
 
                                         </TableRow>
@@ -115,5 +98,4 @@ class Client extends React.Component {
             </div>
         );
     }
-}
-export default (Client)
+

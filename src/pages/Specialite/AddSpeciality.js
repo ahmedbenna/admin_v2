@@ -9,7 +9,7 @@ export default class AddSpeciality extends Component {
     constructor() {
         super()
         this.state = {
-            specialite: '',
+            speciality: '',
         }
     }
     
@@ -25,14 +25,14 @@ export default class AddSpeciality extends Component {
         this.setState({ open: false })
         e.preventDefault();
         const data = {
-            label: this.state.specialite
+            label: this.state.speciality
         }
-        axios.post('speciality/add', data)
+        axios.post('http://localhost:8088/speciality/add', data)
             .then(res => {
                 console.log(res)
                 window.location.reload(false)
 
-                // localStorage.removeItem('specialites')
+                // localStorage.removeItem('specialitys')
             })
             .catch(err=>console.log(err.response))
     }
@@ -47,11 +47,11 @@ export default class AddSpeciality extends Component {
 
         return (
             <div>
-                <Button variant="text" color="primary" onClick={handleClickOpen}> ajouter specialite
+                <Button variant="text" color="primary" onClick={handleClickOpen}> Add Speciality
                    <Add />
                 </Button>
                 <Dialog open={this.state.open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                    <DialogTitle id="form-dialog-title">Ajouter spécialité</DialogTitle>
+                    <DialogTitle id="form-dialog-title">Add Speciality</DialogTitle>
                     <DialogContent>
                         <form onSubmit={this.handleSubmit} style={{ padding: '20px' }}>
 
@@ -59,10 +59,10 @@ export default class AddSpeciality extends Component {
 
                                 <Grid item xs={12} sm={6}>
                                     <TextField
-                                        name='specialite'
-                                       style={{ width:'200px'}}
-                                        label='Ajouter Specialite'
-                                        value={this.state.specialite}
+                                        name='speciality'
+                                    //    style={{ width:'200px'}}
+                                        label='Ajouter speciality'
+                                        value={this.state.speciality}
                                         onChange={this.handleChange}
                                     />
                                 </Grid>
@@ -73,7 +73,7 @@ export default class AddSpeciality extends Component {
                     </DialogContent>
 
                     <DialogActions>
-                        <Button onClick={this.handleSubmit}>Ajouter</Button>
+                        <Button onClick={this.handleSubmit}>add</Button>
 
                         <Button onClick={handleClose} color="primary">
                             Annuler
