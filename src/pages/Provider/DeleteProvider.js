@@ -46,16 +46,16 @@ export default class DeleteProvider extends Component {
                    <DeleteForever />
                 </Button>
                 <Dialog open={this.state.open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                    <DialogTitle id="form-dialog-title">Supprimer Medecin</DialogTitle>
+                    <DialogTitle id="form-dialog-title">Delete provider</DialogTitle>
                     <DialogContent>
                         <Typography>  </Typography>
                     </DialogContent>
 
                     <DialogActions>
-                        <Button onClick={this.handleSubmit}>Supprimer</Button>
+                        <Button onClick={this.handleSubmit}>Delete</Button>
 
                         <Button onClick={handleClose} color="primary">
-                            Annuler
+                            cancel
                         </Button>
                     </DialogActions>
                 </Dialog>

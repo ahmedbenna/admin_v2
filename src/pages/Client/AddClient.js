@@ -16,6 +16,8 @@ const theme = createTheme();
 
 export default function AddClient() {
     const [formData, setformData] = React.useState()
+    const [a, setA] = React.useState()
+
     const [isLoading, setLoading] = React.useState(true);
     const [citys, setCitys] = React.useState();
     const [minDate, setMinDate] = React.useState(moment(new Date()))
@@ -25,6 +27,8 @@ export default function AddClient() {
       try {
         const response = await axios.post('http://localhost:8088/client/signup', formData);
         console.log(response);
+        window.location.reload(false)
+
       } catch (error) {
         console.error(error);
       }
@@ -122,6 +126,7 @@ export default function AddClient() {
             idCity: values.city
           }
         })
+        setA(1)
         signup();
       },
       validationSchema: validationSchema

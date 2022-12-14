@@ -34,12 +34,12 @@ export default function Provider() {
 
   return (
     <div style={{ width: "100%" }}>
-                <div align='right' >
+                {/* <div align='right' >
                     <AddProvider />
-                </div>
+                </div> */}
                 <Grid spacing={2} container>
                     <Grid item xs={12} >
-                        <Typography variant='h6'> Valide</Typography>
+                        <Typography variant='h6'> Providers</Typography>
                     </Grid>
                     <Grid item>
                         {
@@ -65,7 +65,6 @@ export default function Provider() {
                                                 {/* <TableCell align="center">Présentation</TableCell> */}
                                                 {/* <TableCell align="center">valider</TableCell> */}
                                                 <TableCell align="center">Supprimer</TableCell>
-                                                <TableCell align="center">Modifier</TableCell>
                                             </TableRow>
                                         </TableHead>
                                         <TableBody>
@@ -100,70 +99,7 @@ export default function Provider() {
                                 </div>)
                         }
                     </Grid>
-                    <Grid item xs={12}>
-                        <Typography variant='h6'>Non valide</Typography>
-
-                    </Grid>
-                    <Grid item >
-                        {
-                        (api == true) ? (
-                            <div align='center'>
-                                <Typography variant='h6'>Vide</Typography>
-                            </div>
-                            ) :
-                            (providersR) ? (
-                                <TableContainer >
-                                    <Table size='small'  aria-label="simple table">
-                                        <TableHead>
-                                            <TableRow>
-                                                <TableCell size='small' align="center">Id</TableCell>
-                                                <TableCell size='small' align="center">nom</TableCell>
-                                                <TableCell align="center">prenom</TableCell>
-                                                <TableCell align="center">email</TableCell>
-                                                <TableCell align="center">specialite</TableCell>
-                                                <TableCell align="center">contact</TableCell>
-                                                <TableCell align="center">contact urgence</TableCell>
-                                                <TableCell align="center">ville</TableCell>
-                                                <TableCell align="center">adresse</TableCell>
-                                                <TableCell align="center">presentation</TableCell>
-                                                {/* <TableCell align="center">valider</TableCell> */}
-                                                <TableCell align="center">Supprimer</TableCell>
-                                                <TableCell align="center">Modifier</TableCell>
-                                            </TableRow>
-                                        </TableHead>
-                                        <TableBody>
-                                            {providersR.map(med =>
-                                                (med.rejeter === false) ?
-                                                    (<TableRow key={med.id}>
-                                                        <TableCell component="th" scope="row">{med.id}</TableCell>
-                                                        <TableCell align="center">{med.nom}</TableCell>
-                                                        <TableCell align="center">{med.prenom}</TableCell>
-                                                        <TableCell align="center">{med.email}</TableCell>
-                                                        <TableCell align="center">{med.specialite.libelle}</TableCell>
-                                                        <TableCell align="center">{med.conact}</TableCell>
-                                                        <TableCell align="center">{med.contactUrgence}</TableCell>
-                                                        <TableCell align="center">{med.ville.ville}</TableCell>
-                                                        <TableCell align="center">{med.adresse}</TableCell>
-                                                        <TableCell align="center">{med.presentation}</TableCell>
-                                                        {/* <TableCell align="center">{(med.valider) ? <CheckCircle /> : <HighlightOff />}</TableCell> */}
-                                                        <TableCell align="center">  <DeleteProvider id={med.id} /> </TableCell>
-                                                        <TableCell align="center">  <EditProvider med={med} /> </TableCell>
-                                                        {/* <TableCell align="center">{(med.rejeter===true)?  <Accepterprovider id={med.id}/>:<Rejeterprovider id={med.id}/>  }</TableCell> */}
-                                                    </TableRow>)
-                                                    : ('')
-                                            )}
-                                        </TableBody>
-
-                                    </Table>
-                                </TableContainer>
-                            )
-
-                                :
-                                (<div align='center'>
-                                    <CircularProgress />
-                                </div>)
-                        }
-                    </Grid>
+                    
                 </Grid>
 
 

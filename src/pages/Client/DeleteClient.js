@@ -51,14 +51,14 @@ class DeleteClient extends Component {
                     <Dialog open={this.state.open} onClose={handleClose} aria-labelledby="form-dialog-title">
 
                         <DialogContent>
-                            <Typography> supprimer {this.props.c.firstName} {this.props.c.lastName} ?</Typography>
+                            <Typography> Delete {this.props.c.firstName} {this.props.c.lastName} ?</Typography>
                         </DialogContent>
                         <DialogActions>
                             <Button onClick={this.handleDelete} color="primary">
-                                Confermers
+                                delete
                                             </Button>
                             <Button onClick={handleClose} color="primary">
-                                Annuler
+                                cancel
                                             </Button>
                         </DialogActions>
                     </Dialog>
