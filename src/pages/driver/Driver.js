@@ -8,8 +8,8 @@ import axios from 'axios';
 
 
 
-export default function Provider() {
-    const [providers, setProviders]=useState();
+export default function Driver() {
+    const [drivers, setDrivers]=useState();
     const [providersR, setProvidersR]=useState();
     const [api, setApi]=useState();
 
@@ -18,17 +18,17 @@ export default function Provider() {
 
         async function getProvider() {
           try {
-            const response = await axios.get('http://localhost:8088/provider/getAllProvider');
+            const response = await axios.get('http://localhost:8088/api/conducteur');
             console.log(response);
-            setProviders(response.data);
-            console.log("ccccc", providers);
+            setDrivers(response.data);
+            console.log("ccccc", drivers);
             // setLoading(false);
           } catch (error) {
             console.error(error);
           }
         }
         getProvider();
-        console.log("provider", providers)
+        console.log("driver", drivers)
         // console.log("sdf", moment(minDate).subtract(2, 'days').format("YYYY-MM-DD"))
       }, []);
 
@@ -39,7 +39,7 @@ export default function Provider() {
                 </div> */}
                 <Grid spacing={2} container>
                     <Grid item xs={12} >
-                        <Typography variant='h6'> Providers</Typography>
+                        <Typography variant='h6'> Drivers</Typography>
                     </Grid>
                     <Grid item>
                         {
@@ -48,7 +48,7 @@ export default function Provider() {
                         //         <Typography variant='h6'>Vide</Typography>
                         //     </div>
                         //     ) :
-                            (providers) ? (
+                            (drivers) ? (
                                 <TableContainer >
                                     <Table size='small'  aria-label="simple table">
                                         <TableHead>
@@ -57,29 +57,29 @@ export default function Provider() {
                                                 <TableCell size='small' align="center">firstName</TableCell>
                                                 <TableCell align="center">lastName</TableCell>
                                                 <TableCell align="center">Email</TableCell>
-                                                <TableCell align="center">speciality</TableCell>
+                                                {/* <TableCell align="center">speciality</TableCell> */}
                                                 <TableCell align="center">phone</TableCell>
                                                 <TableCell align="center">birthday</TableCell>
-                                                <TableCell align="center">city</TableCell>
-                                                <TableCell align="center">street</TableCell>
+                                                {/* <TableCell align="center">adresse</TableCell> */}
+                                                {/* <TableCell align="center">street</TableCell> */}
                                                 {/* <TableCell align="center">Présentation</TableCell> */}
                                                 {/* <TableCell align="center">valider</TableCell> */}
                                                 <TableCell align="center">Supprimer</TableCell>
                                             </TableRow>
                                         </TableHead>
                                         <TableBody>
-                                            {providers.map(prov =>
+                                            {drivers.map(prov =>
                                                 
                                                     (<TableRow key={prov.id}>
                                                         <TableCell component="th" scope="row">{prov.id}</TableCell>
-                                                        <TableCell align="center">{prov.firstName}</TableCell>
-                                                        <TableCell align="center">{prov.lastName}</TableCell>
+                                                        <TableCell align="center">{prov.prenom}</TableCell>
+                                                        <TableCell align="center">{prov.nom}</TableCell>
                                                         <TableCell align="center">{prov.email}</TableCell>
-                                                        <TableCell align="center">{prov.speciality.label}</TableCell>
-                                                        <TableCell align="center">{prov.phone}</TableCell>
-                                                        <TableCell align="center">{prov.birthday}</TableCell>
-                                                        <TableCell align="center">{prov.city.label}</TableCell>
-                                                        <TableCell align="center">{prov.street}</TableCell>
+                                                        {/* <TableCell align="center">{prov.speciality.label}</TableCell> */}
+                                                        <TableCell align="center">{prov.telephone}</TableCell>
+                                                        <TableCell align="center">{prov.dateDeNaissance}</TableCell>
+                                                        {/* <TableCell align="center">{prov.city.label}</TableCell> */}
+                                                        {/* <TableCell align="center">{prov.adresse}</TableCell> */}
                                                         {/* <TableCell align="center">{prov.presentation}</TableCell> */}
                                                         {/* <TableCell align="center">{(prov.valider) ? <CheckCircle /> : <HighlightOff />}</TableCell> */}
                                                         <TableCell align="center">  <DeleteProvider id={prov.id} /> </TableCell>

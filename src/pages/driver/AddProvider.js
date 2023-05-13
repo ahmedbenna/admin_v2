@@ -33,7 +33,7 @@ export default function AddProvider() {
 
   async function signup() {
     try {
-      const response = await axios.post('http://localhost:8088/provider/signup', formData);
+      const response = await axios.post('http://localhost:8088/driver/signup', formData);
       console.log(response);
     } catch (error) {
       console.error(error);
@@ -145,7 +145,7 @@ export default function AddProvider() {
       signup();
 
       try {
-        const response = axios.post('http://localhost:8088/provider/signup', formData);
+        const response = axios.post('http://localhost:8088/driver/signup', formData);
         console.log(response);
       } catch (error) {
         console.error(error);
@@ -175,11 +175,11 @@ export default function AddProvider() {
     <ThemeProvider theme={theme}>
 
       <div>
-        <Button variant="text" color="primary" onClick={handleClickOpen}> Add provider
+        <Button variant="text" color="primary" onClick={handleClickOpen}> Add driver
           <Add />
         </Button>
         <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-          <DialogTitle id="form-dialog-title">Add provider</DialogTitle>
+          <DialogTitle id="form-dialog-title">Add driver</DialogTitle>
           <DialogContent>
 
             <form onSubmit={Formik.handleSubmit} >

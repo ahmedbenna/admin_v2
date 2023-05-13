@@ -18,7 +18,7 @@ export default function Cient() {
 
         async function getClient() {
             try {
-                const response = await axios.get('http://localhost:8088/client/getAllClient');
+                const response = await axios.get('http://localhost:8088/api/passager');
                 console.log(response);
                 setClients(response.data);
                 console.log("ccccc", clients);
@@ -55,26 +55,26 @@ export default function Cient() {
                                         {/* <TableCell align="center">speciality</TableCell> */}
                                         <TableCell align="center">phone</TableCell>
                                         <TableCell align="center">birthday</TableCell>
-                                        <TableCell align="center">city</TableCell>
-                                        <TableCell align="center">street</TableCell>
+                                        {/* <TableCell align="center">city</TableCell> */}
+                                        {/* <TableCell align="center">street</TableCell> */}
                                         {/* <TableCell align="center">Présentation</TableCell> */}
                                         {/* <TableCell align="center">valider</TableCell> */}
                                         <TableCell align="center">Supprimer</TableCell>
-                                        <TableCell align="center">Modifier</TableCell>
+                                        {/* <TableCell align="center">Modifier</TableCell> */}
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
                                     {clients.map(c =>
                                         <TableRow key={c.id}>
                                             <TableCell component="th" scope="row">{c.id}</TableCell>
-                                            <TableCell align="center">{c.firstName}</TableCell>
-                                            <TableCell align="center">{c.lastName}</TableCell>
+                                            <TableCell align="center">{c.prenom}</TableCell>
+                                            <TableCell align="center">{c.nom}</TableCell>
                                             <TableCell align="center">{c.email}</TableCell>
                                             {/* <TableCell align="center">{c.speciality.label}</TableCell> */}
-                                            <TableCell align="center">{c.phone}</TableCell>
-                                            <TableCell align="center">{c.birthday}</TableCell>
-                                            <TableCell align="center">{c.city.label}</TableCell>
-                                            <TableCell align="center">{c.street}</TableCell>
+                                            <TableCell align="center">{c.telephone}</TableCell>
+                                            <TableCell align="center">{c.dateDeNaissance}</TableCell>
+                                            {/* <TableCell align="center">{c.city.label}</TableCell>
+                                            <TableCell align="center">{c.street}</TableCell> */}
                                             {/* <TableCell align="center">{c.presentation}</TableCell> */}
                                             {/* <TableCell align="center">{(c.valider) ? <CheckCircle /> : <HighlightOff />}</TableCell> */}
                                             <TableCell align="center">  <DeleteClient c={c} /> </TableCell>

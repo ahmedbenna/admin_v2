@@ -24,7 +24,7 @@ export default class DeleteProvider extends Component {
         this.setState({ open: false })
         e.preventDefault();
        
-        const url='http://localhost:8088/administrateurs/medecins/'+this.state.id
+        const url='http://localhost:8088/api/conducteur/'+this.state.id
         axios.delete(url)
             .then(res => {
                 console.log(res)
@@ -46,7 +46,7 @@ export default class DeleteProvider extends Component {
                    <DeleteForever />
                 </Button>
                 <Dialog open={this.state.open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                    <DialogTitle id="form-dialog-title">Delete provider</DialogTitle>
+                    <DialogTitle id="form-dialog-title">Delete driver</DialogTitle>
                     <DialogContent>
                         <Typography>  </Typography>
                     </DialogContent>

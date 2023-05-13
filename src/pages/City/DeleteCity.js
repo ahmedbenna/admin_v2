@@ -20,16 +20,15 @@ export default class SupprimeVille extends Component {
             console.log(this.state);
         })
     }
-    handleSubmit = e => {
-        this.setState({ open: false })
-        e.preventDefault();
-        
-        const url='villes'+this.state.id
+    handleDelete = e => {
+        const url = 'http://localhost:8088/api/publication/'+this.props.id
         axios.delete(url)
-            .then(res => {
-                console.log(res)
-                localStorage.removeItem('ville')
-            })
+            .then(res => { 
+                window.location.reload(false)
+                console.log(res) })
+            .catch(err => { console.log(err) })
+        this.setState({ open: false })
+
     }
     render() {
         const handleClickOpen = () => {
@@ -52,7 +51,7 @@ export default class SupprimeVille extends Component {
                     </DialogContent>
 
                     <DialogActions>
-                        <Button onClick={this.handleSubmit}>Supprimer</Button>
+                        <Button onClick={this.handleDelete}>Supprimer</Button>
 
                         <Button onClick={handleClose} color="primary">
                             Annuler

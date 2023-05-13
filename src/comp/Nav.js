@@ -139,12 +139,12 @@ export default function Nav() {
                 <ListItemText primary="Dashboard" />
               </ListItem>
             </Link>
-            <Link to='/provider' style={{ textDecoration: 'none', color: '#585959' }}>
+            <Link to='/driver' style={{ textDecoration: 'none', color: '#585959' }}>
               <ListItem button>
                 <ListItemIcon>
                   <LocalHospital />
                 </ListItemIcon>
-                <ListItemText primary="provider" />
+                <ListItemText primary="driver" />
               </ListItem>
             </Link>
             <Link to='/Client' style={{ textDecoration: 'none', color: '#585959' }}>

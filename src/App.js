@@ -9,10 +9,10 @@ import {
 import Nav from './comp/Nav';
 import { CssBaseline, Paper } from '@mui/material';
 import Dashboard from './pages/Dashboard';
-import Provider from './pages/Provider/Provider';
+import Driver from './pages/driver/Driver';
 import Speciality from './pages/Specialite/Speciality';
 import Client from './pages/Client/Client';
-import City from './pages/City/City';
+import Publication from './pages/City/Publication';
 import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -43,7 +43,7 @@ function App() {
   return (
     <>
       <CssBaseline />
-      {/* <CityContext.Provider value={citys}> */}
+      {/* <CityContext.driver value={citys}> */}
       <Router>
           <div style={{ display: 'flex' }}>
             <Nav />
@@ -52,16 +52,16 @@ function App() {
 
                 <Routes>
                   <Route exact path="/" element={<Dashboard />} />
-                  <Route exact path="/provider" element={<Provider />} />
+                  <Route exact path="/driver" element={<Driver />} />
                   <Route exact path="/client" element={<Client />} />
-                  <Route exact path="/city" element={<City />} />
+                  <Route exact path="/city" element={<Publication />} />
                   <Route exact path="/Speciality" element={<Speciality />} />
                 </Routes>
               </Paper>
             </div>
           </div>
         </Router>
-      {/* </CityContext.Provider> */}
+      {/* </CityContext.driver> */}
     </>
 
   );

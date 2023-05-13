@@ -11,7 +11,7 @@ import { withRouter } from "react-router";
 
 
 
-class City extends React.Component {
+class Publication extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -27,7 +27,7 @@ class City extends React.Component {
     getCity = () => {
 
         axios
-            .get("http://localhost:8088/city/getAllCity")
+            .get("http://localhost:8088/api/publication/")
             .then(data => {
                 if (data.data.length !== 0) {
                     this.setState({ city: data.data })
@@ -57,7 +57,7 @@ class City extends React.Component {
         return (
             <div style={{ width: "100%" }}>
                 <div align='right' >
-                    <AddCity />
+                    {/* <AddCity /> */}
                 </div>
                 {(this.state.api == true) ? (
                     <div align='center'>
@@ -66,11 +66,19 @@ class City extends React.Component {
                 ) :
                     (this.state.city) ? (
                         <TableContainer >
-                            <Table  aria-label="simple table">
+                            <Table aria-label="simple table">
                                 <TableHead>
                                     <TableRow>
                                         <TableCell align="right">Id</TableCell>
-                                        <TableCell align="right">Libelle</TableCell>
+                                        <TableCell align="right">Id Driver</TableCell>
+                                        <TableCell align="right">From</TableCell>
+                                        <TableCell align="right">Destination</TableCell>
+                                        <TableCell align="right">Date</TableCell>
+                                        <TableCell align="right">seats</TableCell>
+                                        <TableCell align="right">price</TableCell>
+                                        <TableCell align="right">description</TableCell>
+
+
                                         {/* <TableCell align="right">Supprimer</TableCell> */}
                                         <TableCell align="right">Modifier</TableCell>
                                     </TableRow>
@@ -79,10 +87,17 @@ class City extends React.Component {
 
                                     {this.state.city.map(cit =>
                                         <TableRow key={cit.idCity}>
-                                            <TableCell component="th" scope="row">{cit.idCity}</TableCell>
-                                            <TableCell align="right">{cit.label}</TableCell>
-                                            {/* <TableCell align="right">  <DeleteCity id={cit.id} libelle={cit.city}/> </TableCell> */}
-                                            <TableCell align="right">  <EditCity city={cit} /> </TableCell>
+                                            <TableCell component="th" scope="row">{cit.id}</TableCell>
+                                            <TableCell align="right">{cit.conducteur.id}</TableCell>
+                                            <TableCell align="right">{cit.lieuDepart}</TableCell>
+                                            <TableCell align="right">{cit.lieuArrive}</TableCell>
+                                            <TableCell align="right">{cit.dateDepart}</TableCell>
+                                            <TableCell align="right">{cit.nbrePlace}</TableCell>
+                                            <TableCell align="right">{cit.prix}</TableCell>
+                                            <TableCell align="right">{cit.description}</TableCell>
+
+                                            <TableCell align="right">  <DeleteCity id={cit.id} /> </TableCell>
+                                            {/* <TableCell align="right">  <EditCity city={cit} /> </TableCell> */}
                                             {/* <TableCell align="right">{row.protein}</TableCell>  */}
                                         </TableRow>
                                     )}
@@ -103,4 +118,4 @@ class City extends React.Component {
         );
     }
 }
-export default (City)
+export default (Publication)

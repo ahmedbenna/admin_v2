@@ -79,20 +79,20 @@ const validationSchema = Yup.object({
 class EditProvider extends Component {
     constructor(props) {
         super(props)
-        const provider = props.prov
+        const driver = props.prov
         this.state = {
             specialitys: [],
             citys: [],
 
-            specialite: provider.speciality.idSpeciality,
+            specialite: driver.speciality.idSpeciality,
 
 
 
-            city: provider.city.idCity,
+            city: driver.city.idCity,
 
 
-            email: provider.email,
-            // presentation: provider.presentation,
+            email: driver.email,
+            // presentation: driver.presentation,
             api: false,
         }
     }

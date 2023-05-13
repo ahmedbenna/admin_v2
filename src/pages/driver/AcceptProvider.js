@@ -24,7 +24,7 @@ export default class Accepterprovider extends Component {
         this.setState({ open: false })
         e.preventDefault();
 
-        const url = 'http://localhost:8088/provider/signup' + this.state.id
+        const url = 'http://localhost:8088/driver/signup' + this.state.id
         axios.put(url)
 
             .then(res => {

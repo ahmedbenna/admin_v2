@@ -20,7 +20,7 @@ class DeleteClient extends Component {
     }
    
     handleDelete = e => {
-        const url = 'http://localhost:8088/client/deleteClient/'+this.props.c.id
+        const url = 'http://localhost:8088/api/passager/'+this.props.c.id
         axios.delete(url)
             .then(res => { 
                 window.location.reload(false)
