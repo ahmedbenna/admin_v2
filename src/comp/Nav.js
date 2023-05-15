@@ -144,7 +144,7 @@ export default function Nav() {
                 <ListItemIcon>
                   <LocalHospital />
                 </ListItemIcon>
-                <ListItemText primary="driver" />
+                <ListItemText primary="Driver" />
               </ListItem>
             </Link>
             <Link to='/Client' style={{ textDecoration: 'none', color: '#585959' }}>
@@ -152,23 +152,23 @@ export default function Nav() {
                 <ListItemIcon>
                   <People />
                 </ListItemIcon>
-                <ListItemText primary="Client" />
+                <ListItemText primary="Passenger" />
               </ListItem>
             </Link>
-            <Link to='/Speciality' style={{ textDecoration: 'none', color: '#585959' }}>
+            {/* <Link to='/Speciality' style={{ textDecoration: 'none', color: '#585959' }}>
               <ListItem button>
                 <ListItemIcon>
                   <Class />
                 </ListItemIcon>
                 <ListItemText primary="Specialites" />
               </ListItem>
-            </Link>
+            </Link> */}
             <Link to='/City' style={{ textDecoration: 'none', color: '#585959' }}>
               <ListItem button>
                 <ListItemIcon>
                   <LocationCity />
                 </ListItemIcon>
-                <ListItemText primary="City" />
+                <ListItemText primary="Publication" />
               </ListItem>
             </Link>
         </List>
